@@ -17,6 +17,16 @@ class Game {
   }
 
   registerEvents() {
+    let currentElement = this.currentSymbol;
+    let lowCurrentElement = currentElement.toLowerCase;
+    let symbol = String.fromCharCode;
+    let lowSymbol = symbol.toLowerCase;
+
+    if (lowCurrentElement === lowSymbol) {
+      this.success();
+    } else {
+      this.fail();
+    }
     /*
       TODO:
       Написать обработчик события, который откликается
