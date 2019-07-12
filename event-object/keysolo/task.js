@@ -17,16 +17,26 @@ class Game {
   }
 
   registerEvents() {
-    let currentElement = this.currentSymbol;
-    let lowCurrentElement = currentElement.toLowerCase;
-    let symbol = String.fromCharCode;
-    let lowSymbol = symbol.toLowerCase;
 
-    if (lowCurrentElement === lowSymbol) {
-      this.success();
-    } else {
-      this.fail();
-    }
+let _this = this;
+    document.addEventListener("keypress", function (e) {
+      let currentElement = _this.currentSymbol.textContent;
+
+      let lowCurrentElement = currentElement.toLowerCase();
+      let symbol = String.fromCharCode(e.charCode);
+      let lowSymbol = symbol.toLowerCase();
+
+      if (lowCurrentElement === lowSymbol) {
+        _this.success();
+      } else {
+        _this.fail();
+      }
+
+    })
+
+
+
+
     /*
       TODO:
       Написать обработчик события, который откликается
@@ -66,18 +76,18 @@ class Game {
 
   getWord() {
     const words = [
-        'bob',
-        'awesome',
-        'netology',
-        'hello',
-        'kitty',
-        'rock',
-        'youtube',
-        'popcorn',
-        'cinema',
-        'love',
-        'javascript'
-      ],
+      'bob',
+      'awesome',
+      'netology',
+      'hello',
+      'kitty',
+      'rock',
+      'youtube',
+      'popcorn',
+      'cinema',
+      'love',
+      'javascript'
+    ],
       index = Math.floor(Math.random() * words.length);
 
     return words[index];
@@ -87,7 +97,7 @@ class Game {
     const html = [...word]
       .map(
         (s, i) =>
-          `<span class="symbol ${i === 0 ? 'symbol_current': ''}">${s}</span>`
+          `<span class="symbol ${i === 0 ? 'symbol_current' : ''}">${s}</span>`
       )
       .join('');
     this.wordElement.innerHTML = html;
