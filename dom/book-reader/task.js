@@ -13,19 +13,20 @@ for (i = 0; i < arrButtons.length; i++) {
         elementFont.classList.add("font-size_active");
 
         let attr = elementFont.getAttribute("data-size");
-
-        let book = document.getElementsByClassName("book");
-
-        let arrBooks = Array.from(book);
-        
-        let index = arrButtons.indexOf(elementFont);
-        let activeBook = arrBooks[index];
+        let book = document.querySelector("#book");
 
         if (attr === "small") {
-            activeBook.classList.add("book_fs-small");
+            book.classList.remove("book_fs-big");
+            book.classList.add("book_fs-small");
         }
-        if (attr === "big") {
-            activeBook.classList.add("book_fs-big");
+        else if (attr === "big") {
+            book.classList.remove("book_fs-small");
+            book.classList.add("book_fs-big");
+        }
+        else{
+            book.classList.remove("book_fs-small");
+            book.classList.remove("book_fs-big");
+
         }
     })
 }
