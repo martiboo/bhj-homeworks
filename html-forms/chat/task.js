@@ -13,10 +13,6 @@ let input = document.getElementById("chat-widget__input");
 
 let date = new Date();
 let time = date.toLocaleTimeString();
-let arrRobotMessages = ["Добрый день, мы ещё не проснулись. Позвоните через 10 лет", "Мы ничего не будем вам продавать", "Где ваша совесть"];
-let randomMessage = Math.floor(Math.random() * arrRobotMessages.length);
-
-
 
 input.addEventListener("keyup", function (e) {
     if (e.keyCode === 13) {
@@ -32,10 +28,15 @@ input.addEventListener("keyup", function (e) {
         </div>
     `;
 
-    let timer = setTimeout(func, 2000);
+        document.getElementById("chat-widget__input").value = "";
 
-    function func() {
-        messages.innerHTML += `
+        let timer = setTimeout(func, 1000);
+
+        function func() {
+            let arrRobotMessages = ["Добрый день, мы ещё не проснулись. Позвоните через 10 лет", "Мы ничего не будем вам продавать", "Где ваша совесть"];
+            let randomMessage = Math.floor(Math.random() * arrRobotMessages.length);
+
+            messages.innerHTML += `
         <div class="message">
             <div class="message__time">${time}</div>
             <div class="message__text">
@@ -43,9 +44,6 @@ input.addEventListener("keyup", function (e) {
             </div>
         </div>
     `;
-
-    }
-
-    
+        }
     }
 })
