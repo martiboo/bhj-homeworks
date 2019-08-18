@@ -1,6 +1,6 @@
 let taskInput = document.getElementById("task__input");
 
-taskInput.addEventListener("keyup", function (e) {
+taskInput.addEventListener("keydown", function (e) {
   if (e.keyCode === 13) {
 
     let taskList = document.getElementById("tasks__list");
@@ -12,6 +12,7 @@ taskInput.addEventListener("keyup", function (e) {
     <a href="#" class="task__remove">&times;</a>
     </div>
     `;
+    e.preventDefault();
   }
 
   let remove = document.getElementsByClassName("task__remove");
@@ -24,5 +25,4 @@ taskInput.addEventListener("keyup", function (e) {
       elementRemove.parentElement.remove();
     })
   }
-
 })
