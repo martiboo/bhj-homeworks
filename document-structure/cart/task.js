@@ -4,15 +4,29 @@ let incQuantity = document.getElementsByClassName("product__quantity-control_inc
 
 let arrIncQuantity = Array.from(incQuantity);
 
+
 for (i = 0; i < arrIncQuantity.length; i++) {
     let elementIncQuantity = arrIncQuantity[i];
     elementIncQuantity.addEventListener("click", function (e) {
-
         let value = elementIncQuantity.parentElement.querySelector(".product__quantity-value");
         value.textContent++;
+    }
+    )
+}
+
+let addToCart = document.getElementsByClassName("product__add");
+
+let arrAddToCart = Array.from(addToCart);
+
+for (i = 0; i < arrAddToCart.length; i++) {
+    let elementAddToCart = arrAddToCart[i];
+    elementAddToCart.addEventListener("click", function (e) {
+
+        let value = elementAddToCart.parentElement.querySelector(".product__quantity-value");
+
         let amount = value.textContent;
 
-        let parent = elementIncQuantity.closest(".product");
+        let parent = elementAddToCart.closest(".product");
 
         let id = parent.dataset.id;
         let image = parent.querySelector(".product__image");
@@ -29,7 +43,13 @@ for (i = 0; i < arrIncQuantity.length; i++) {
 
         } else {
             let countProduct = cartProduct.querySelector(".cart__product-count");
-            countProduct.textContent++;
+            let countProductAmount = countProduct.textContent;
+            let countProductNumber = Number(countProductAmount);
+            let amountNumber = Number(amount);
+            let number = countProductNumber + amountNumber;
+            let numberOne = Number(number);
+
+            countProduct.textContent = numberOne;
         }
     }
     )
@@ -47,8 +67,8 @@ for (i = 0; i < arrDecQuantity.length; i++) {
 
         value.textContent--;
 
-        if (value.textContent < 0) {
-            value.textContent = 0;
+        if (value.textContent < 1) {
+            value.textContent = 1;
         }
     }
     )
