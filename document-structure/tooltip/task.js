@@ -1,6 +1,5 @@
 let tip = document.querySelectorAll(".has-tooltip");
 
-
 let currentTooltip = null;
 
 for (let i = 0; i < tip.length; i++) {
@@ -8,26 +7,27 @@ for (let i = 0; i < tip.length; i++) {
 
     let tooltip = tooltipElement.getAttribute("title");
     let rect = tooltipElement.getBoundingClientRect();
-    console.log(rect);
-
 
     let element = document.createElement('div');
     element.className = 'tooltip';
-    element.style.left = 0;
-    element.style.top = 0;
+    element.style.left = rect.left + "px";
+    element.style.top = rect.bottom + "px";
     element.innerHTML = tooltip;
-    document.body.appendChild(element);
-
+    tooltipElement.appendChild(element);
+    
     tooltipElement.addEventListener("click", function (e) {
         e.preventDefault();
+        console.log(currentTooltip);
 
         if (currentTooltip != null) {
             currentTooltip.style.display = "none";
         }
 
-
-        element.style.display = "block";
-
-        currentTooltip = element;
+        if (element != currentTooltip) {
+            element.style.display = "block";
+            currentTooltip = element;
+        } else {
+            currentTooltip = null;
+        }
     })
 }
